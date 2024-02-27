@@ -14,9 +14,10 @@ return (
   <Route path='/users/create' element={<CreateUsers />} />
   <Route path='/users/details/:id' element={<ShowUser />} />
   <Route path='/users/edit/:id' element={<EditUser />} />
-  <Route path='/users/delete' element={<DeleteUser />} />
+  <Route path='/users/delete/:id' element={<DeleteUser />} />
+
 </Routes>
-)
-}
+  );
+};
 
 export default App

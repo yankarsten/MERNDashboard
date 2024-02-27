@@ -4,7 +4,7 @@ var userSchema = mongoose.Schema(
   {
     imagem: {
       type: String,
-      required: true,
+      required: false,
     },
     nome: {
       type: String,
