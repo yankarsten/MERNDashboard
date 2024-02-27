@@ -6,18 +6,20 @@ import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 const CreateUsers = () => {
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [publishYear, setPublishYear] = useState('');
+  const [nome, setNome] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [nascimento, setNascimento] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
   const handleSaveUser = () => {
     const data = {
-      title,
-      author,
-      publishYear,
+      nome,
+      cpf,
+      telefone,
+      nascimento,
     };
     setLoading(true);
     axios
@@ -41,34 +43,43 @@ const CreateUsers = () => {
       {loading ? <Spinner /> : ''}
       <div className='flex flex-col border-2 border-sky-400 rounded-xl w-[600px] p-4 mx-auto'>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Title</label>
+          <label className='text-xl mr-4 text-gray-500'>Nome</label>
           <input
             type='text'
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Author</label>
+          <label className='text-xl mr-4 text-gray-500'>CPF</label>
           <input
             type='text'
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
           />
         </div>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Publish Year</label>
+          <label className='text-xl mr-4 text-gray-500'>Telefone</label>
           <input
             type='number'
-            value={publishYear}
-            onChange={(e) => setPublishYear(e.target.value)}
+            value={telefone}
+            onChange={(e) => setTelefone(e.target.value)}
+            className='border-2 border-gray-500 px-4 py-2  w-full '
+          />
+        </div>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Data de Nascimento</label>
+          <input
+            type='text'
+            value={nascimento}
+            onChange={(e) => setNascimento(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
           />
         </div>
         <button className='p-2 bg-sky-300 m-8' onClick={handleSaveUser}>
-          Save
+          Salvar
         </button>
       </div>
     </div>

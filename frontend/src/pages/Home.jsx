@@ -51,7 +51,7 @@ return (
           {index + 1}
         </td>
         <td className='border border-slate-700 rounded-md text-center'>
-          {user.imagem}
+          <img src={`data:image/jpg;base64, ${user.imagem}`} alt='Imagem' />
         </td>
         <td className='border border-slate-700 rounded-md text-center'>
           {user.nome}

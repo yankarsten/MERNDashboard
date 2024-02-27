@@ -3,7 +3,7 @@ import { PORT, mongoDBURL } from "./config.js";
 import mongoose from 'mongoose';
 import { User } from "./models/userModel.js";
 import usersRoute from './routes/usersRoute.js';
-import cors from 'cors'; // Adicione esta linha
+import cors from 'cors';
 
 const app = express();
 
@@ -11,9 +11,8 @@ const app = express();
 app.use(express.json());
 
 //Middleware para o manuseio de CORS
-app.use(cors());
+app.use(cors({ origin: '*' }));
 
-// Defina suas rotas aqui
 app.use('/users', usersRoute);
 
 mongoose
