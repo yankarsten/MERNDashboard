@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
 
 const CreateUsers = () => {
+  const [imagem, setImagem] = useState(null);
   const [nome, setNome] = useState('');
   const [cpf, setCpf] = useState('');
   const [telefone, setTelefone] = useState('');
@@ -63,7 +64,7 @@ const CreateUsers = () => {
         <div className='my-4'>
           <label className='text-xl mr-4 text-gray-500'>Telefone</label>
           <input
-            type='number'
+            type='text'
             value={telefone}
             onChange={(e) => setTelefone(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
@@ -72,10 +73,19 @@ const CreateUsers = () => {
         <div className='my-4'>
           <label className='text-xl mr-4 text-gray-500'>Data de Nascimento</label>
           <input
-            type='text'
+            type='date'
             value={nascimento}
             onChange={(e) => setNascimento(e.target.value)}
             className='border-2 border-gray-500 px-4 py-2  w-full '
+          />
+        </div>
+        <div className='my-4'>
+          <label className='text-xl mr-4 text-gray-500'>Imagem (PNG)</label>
+          <input
+            type='file'
+            accept='image/png'
+            onChange={(e) => setImagem(e.target.files[0])}
+            className='border-2 border-gray-500 px-4 py-2 w-full'
           />
         </div>
         <button className='p-2 bg-sky-300 m-8' onClick={handleSaveUser}>
