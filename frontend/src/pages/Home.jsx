@@ -51,7 +51,9 @@ return (
           {index + 1}
         </td>
         <td className='border border-slate-700 rounded-md text-center'>
-          <img src={`data:image/jpg;base64, ${user.imagem}`} alt='Imagem' />
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <img src={`data:image/png;base64, ${user.imagem}`} alt='Imagem' />
+          </div>
         </td>
         <td className='border border-slate-700 rounded-md text-center'>
           {user.nome}
@@ -63,8 +65,6 @@ return (
           {user.nascimento}
         </td>
         <td className='flex-justify-center gap-x-4'>
-          <Link to={`/users/details/${user._id}`}> <BsInfoCircle className='text-2x1 text-green-800' />
-          </Link>
           <Link to={`/users/edit/${user._id}`}> <AiOutlineEdit className='text-2x1 text-yellow-600' />
           </Link>
           <Link to={`/users/delete/${user._id}`}> <MdOutlineDelete className='text-2x1 text-red-600' />
