@@ -21,7 +21,7 @@ Aplicação web full-stack utilizando o Stack MERN (MongoDB, Express, React, Nod
 1. Clonar o repositório:
 
    ```bash
-   git clone https://github.com/your_username/MERNDashboard.git
+   git clone https://github.com/yankarsten/MERNDashboard.git
 
 2. Configurar o banco de dados:
 
