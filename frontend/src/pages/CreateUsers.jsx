@@ -15,26 +15,39 @@ const CreateUsers = () => {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleSaveUser = () => {
-    const data = {
-      nome,
-      cpf,
-      telefone,
-      nascimento,
-    };
+  const handleSaveUser = async () => {
     setLoading(true);
-    axios
-      .post('http://localhost:5555/users', data)
-      .then(() => {
-        setLoading(false);
-        enqueueSnackbar('Usuário criado com sucesso', { variant: 'success' });
-        navigate('/');
-      })
-      .catch((error) => {
-        setLoading(false);
-        enqueueSnackbar('Error', { variant: 'error' });
-        console.log(error);
-      });
+    try {
+      const imageData = await convertToBase64(imagem);
+      const data = {
+        imagem: imageData,
+        nome,
+        cpf,
+        telefone,
+        nascimento,
+      };
+      await axios.post('http://localhost:5555/users', data);
+      setLoading(false);
+      enqueueSnackbar('Usuário criado com sucesso', { variant: 'success' });
+      navigate('/');
+    } catch (error) {
+      setLoading(false);
+      enqueueSnackbar('Error', { variant: 'error' });
+      console.log(error);
+    }
+  };
+
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result.split(',')[1]);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
   };
 
   return (
@@ -80,10 +93,10 @@ const CreateUsers = () => {
           />
         </div>
         <div className='my-4'>
-          <label className='text-xl mr-4 text-gray-500'>Imagem (PNG)</label>
+          <label className='text-xl mr-4 text-gray-500'>Imagem</label>
           <input
             type='file'
-            accept='image/png'
+            accept='.jpeg, .png, .jpg'
             onChange={(e) => setImagem(e.target.files[0])}
             className='border-2 border-gray-500 px-4 py-2 w-full'
           />
@@ -94,6 +107,6 @@ const CreateUsers = () => {
       </div>
     </div>
   );
-}
+};
 
-export default CreateUsers
+export default CreateUsers;
